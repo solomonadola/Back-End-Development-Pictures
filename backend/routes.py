@@ -46,7 +46,7 @@ def get_picture_by_id(id):
     for item in data:
         if item['id'] == id:
             return item
-    return {"Message": "picture with id {picture['id']} NOT FOUND"}, 404
+    return {"message": "picture not found"}, 404
 
 
 
@@ -58,11 +58,9 @@ def create_picture():
     picture = request.json
     for item in data:
         if item['id'] == picture['id']:
-            return {"Message": "picture with id {picture['id']} already present"}, 302
-        elif  not picture['id']:
-            return '', 201
+            return {"Message": f"picture with id {picture['id']} already present"}, 302
     data.append(picture)
-    return ''
+    return picture, 201
 
 ######################################################################
 # UPDATE A PICTURE
@@ -72,12 +70,11 @@ def create_picture():
 @app.route("/picture/<int:id>", methods=["PUT"])
 def update_picture(id):
     req = request.json
-    for item in data:
+    for index, item in enumerate(data):
         if item['id'] == id:
-            item = req
-            return '', 200
-    if not signal:
-        return {"message": "picture not found"}, 404
+            data[index] = req
+            return req, 201
+    return {"message": "picture not found"}, 404
 
 
 ######################################################################

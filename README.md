@@ -1,4 +1,4 @@
-# coding-project-template
+# Pictures microservice 
 
 This is a microservice API for images is designed to provide a RESTful interface for managing images. It is built using a variety of technologies, including Python, Flask, and Docker, and it allows users to perform CRUD operations on images. The API is designed to be scalable and easy to use, and it can be deployed on a variety of platforms.
 
